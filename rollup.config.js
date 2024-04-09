@@ -85,16 +85,21 @@ export default async function ({ watch }) {
   return [
     // Main builds
     {
-      input: 'src/index.ts',
+      input: {
+        index: 'src/index.ts',
+        mock: 'src/mock.ts',
+      },
       plugins: [simpleTS('src'), commonjs(), resolve()],
       output: [
         {
-          file: 'dist/index.js',
+          dir: 'dist',
           format: 'es',
+          entryFileNames: '[name].js',
         },
         {
-          file: 'dist/index.cjs',
+          dir: 'dist',
           format: 'cjs',
+          entryFileNames: '[name].cjs',
         },
       ],
     },
